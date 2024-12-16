@@ -1,29 +1,46 @@
 <template>
-  <div>
-    <h1>View Posts</h1>
+    <div>
+        <h1>View Posts</h1>
 
-    <ul>
-      <li>
-        <RouterLink :to="{ name: 'postDetail', params: { id: 1 } }">
-          Post 1
-        </RouterLink>
-      </li>
-      <li>
-        <RouterLink to="/postDetail/2">Post 2</RouterLink>
-      </li>
-      <li>
-        <RouterLink to="/postDetail/3">Post 3</RouterLink>
-      </li>
-      <li>
-        <RouterLink to="/postDetail/4">Post 4</RouterLink>
-      </li>
-      <li>
-        <RouterLink to="/postDetail/5">Post 5</RouterLink>
-      </li>
-    </ul>
-  </div>
+        <ul>
+            <li v-for="post in posts" :key="post.id">
+                <RouterLink :to="{ name: 'postDetail', params: { id: post.id } }">
+                    {{ post.title }}
+                </RouterLink>
+            </li>
+        </ul>
+    </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+
+const posts = ref([
+    {
+        id: 1,
+        title: "Post 1",
+    },
+    {
+        id: 2,
+        title: "Post 2",
+    },
+    {
+        id: 3,
+        title: "Post 3",
+    },
+    {
+        id: 4,
+        title: "Post 4",
+    },
+    {
+        id: 5,
+        title: "Post 5",
+    },
+    {
+        id: 6,
+        title: "Post 6",
+    },
+]);
+</script>
 
 <style lang="scss" scoped></style>
