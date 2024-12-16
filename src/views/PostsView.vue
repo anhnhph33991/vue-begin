@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>View Posts</h1>
+        <h1 ref="viewPostRef">{{ viewPost }}</h1>
 
         <ul>
             <li v-for="post in posts" :key="post.id">
@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 
 const posts = ref([
     {
@@ -41,6 +41,15 @@ const posts = ref([
         title: "Post 6",
     },
 ]);
+
+const viewPost = "Post Detail";
+const viewPostRef = ref(null);
+
+onMounted(() => {
+    console.log(`The app title is ${viewPostRef.value.offsetWidth} px wide`);
+})
+
+
 </script>
 
 <style lang="scss" scoped></style>
