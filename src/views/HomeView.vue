@@ -50,9 +50,11 @@ import {
   onActivated,
   onBeforeMount,
   onBeforeUnmount,
+  onBeforeUpdate,
   onDeactivated,
   onMounted,
   onUnmounted,
+  onUpdated,
   reactive,
   ref,
   watch,
@@ -136,6 +138,14 @@ onActivated(() => {
 // Khi một component bị ẩn đi và được lưu vào bộ nhớ cache (ví dụ: khi chuyển sang tab khác).
 onDeactivated(() => {
   console.log("onDeactivated");
+});
+// Thực hiện các tác vụ trước khi DOM được cập nhật
+onBeforeUpdate(() => {
+  console.log("onBeforeUpdate");
+});
+// Được gọi ngay sau khi DOM của component được cập nhật
+onUpdated(() => {
+  console.log("onUpdated");
 });
 
 let productList = reactive([
