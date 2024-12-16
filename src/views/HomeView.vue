@@ -4,11 +4,30 @@
 
     <button @click="removeCounter" class="btn">-</button>
     <span class="counter">{{ counter }}</span>
-    <button @click="increaseCounter" class="btn">+</button>
+    <button @click="increaseCounter(5)" class="btn">+</button>
+
+    <p>This counter is: {{ oddOrEvent }}</p>
 
     <div class="edit-counter">
       <span>Edit Counter:</span>
       <input type="text" v-model="counterTitle" />
+    </div>
+
+    <div v-if="flagCheck">
+      <h1>Check == True</h1>
+    </div>
+
+    <h2 v-else>Check == false</h2>
+
+    <!-- <button @click="awesome = !awesome">Toggle</button> -->
+
+    <h1>Show Result:</h1>
+
+    <div>
+      <button @click="awesome = !awesome">Toggle</button>
+
+      <h1 v-if="awesome">Vue is awesome!</h1>
+      <h1 v-else>Oh no 😢</h1>
     </div>
 
     <div class="products">
@@ -18,16 +37,26 @@
         </li>
       </ul>
     </div>
+
+    <button :style="{ color: 'red' }" :disabled="flagCheck">Button</button>
+
+    <div></div>
   </div>
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
+import { computed, reactive, ref } from "vue";
+
+const flagCheck = ref(true);
+
+const awesome = ref(true);
 
 const counter = ref(0),
   counterTitle = ref("My Counter");
 
-const increaseCounter = () => {
+const increaseCounter = (amount) => {
+  console.log(amount);
+
   counter.value++;
 };
 
@@ -40,7 +69,17 @@ const removeCounter = () => {
   counter.value--;
 };
 
-const productList = reactive([
+// computed
+
+const oddOrEvent = computed(() => {
+  if (counter.value % 2 === 0) {
+    return "even";
+  } else {
+    return "odd";
+  }
+});
+
+let productList = reactive([
   {
     id: 1,
     name: "San pham 1",
