@@ -45,7 +45,18 @@
 </template>
 
 <script setup>
-import { computed, reactive, ref, watch } from "vue";
+import {
+  computed,
+  onActivated,
+  onBeforeMount,
+  onBeforeUnmount,
+  onDeactivated,
+  onMounted,
+  onUnmounted,
+  reactive,
+  ref,
+  watch,
+} from "vue";
 
 const flagCheck = ref(true);
 
@@ -84,14 +95,48 @@ const oddOrEvent = computed(() => {
 watch(
   () => counter.value,
   (newCount, oldCount) => {
-    console.log(`new Count: ${newCount}`);
-    console.log(`old Count: ${oldCount}`);
+    // console.log(`new Count: ${newCount}`);
+    // console.log(`old Count: ${oldCount}`);
 
     if (newCount === 20) {
       alert("count 20");
     }
   }
 );
+
+// lifecycle
+
+// Hàm này sẽ được gọi trước khi component được gắn vào DOM
+onBeforeMount(() => {
+  console.log("onBeforeMount");
+});
+// Hàm này sẽ được gọi sau khi component được gắn vào DOM.
+onMounted(() => {
+  console.log("onMounted");
+});
+// Hàm này sẽ được gọi trước khi component bị gỡ bỏ khỏi DOM.
+onBeforeUnmount(() => {
+  console.log("onBeforeUnmount");
+});
+onUnmounted(() => {
+  console.log("onUnmounted");
+});
+
+/**
+ *  Tại sao sử dụng onActivated và onDeactivated?
+    Tối ưu hiệu năng: Tránh render lại component từ đầu mỗi khi chuyển đổi giữa các route hoặc tab, giúp tăng tốc độ ứng dụng.
+    Quản lý trạng thái: Giúp bạn lưu trữ và khôi phục trạng thái của component khi nó được kích hoạt lại.
+    Cải thiện trải nghiệm người dùng: Tạo hiệu ứng chuyển đổi mượt mà giữa các màn hình.
+ */
+
+// Khi một component được kích hoạt lại sau khi đã bị ẩn đi (ví dụ: khi chuyển về tab chứa component đó).
+onActivated(() => {
+  console.log("onActivated");
+});
+// Khi một component bị ẩn đi và được lưu vào bộ nhớ cache (ví dụ: khi chuyển sang tab khác).
+onDeactivated(() => {
+  console.log("onDeactivated");
+});
 
 let productList = reactive([
   {
