@@ -45,7 +45,7 @@
 </template>
 
 <script setup>
-import { computed, reactive, ref } from "vue";
+import { computed, reactive, ref, watch } from "vue";
 
 const flagCheck = ref(true);
 
@@ -78,6 +78,20 @@ const oddOrEvent = computed(() => {
     return "odd";
   }
 });
+
+// watch
+
+watch(
+  () => counter.value,
+  (newCount, oldCount) => {
+    console.log(`new Count: ${newCount}`);
+    console.log(`old Count: ${oldCount}`);
+
+    if (newCount === 20) {
+      alert("count 20");
+    }
+  }
+);
 
 let productList = reactive([
   {
