@@ -47,6 +47,7 @@
 <script setup>
 import {
   computed,
+  nextTick,
   onActivated,
   onBeforeMount,
   onBeforeUnmount,
@@ -69,6 +70,10 @@ const counter = ref(0),
 
 const increaseCounter = (amount) => {
   console.log(amount);
+
+  nextTick(() => {
+    console.log('do something');
+  })
 
   counter.value++;
 };
