@@ -8,6 +8,7 @@ import { RouterLink, RouterView } from "vue-router";
     <RouterLink to="/about">About</RouterLink>
     <RouterLink :to="{ name: 'products' }">Products</RouterLink>
     <RouterLink to="/posts">Posts</RouterLink>
+    <RouterLink to="/modals">Modals</RouterLink>
   </nav>
 
   <!-- <router-view v-slot="{ Component }">
