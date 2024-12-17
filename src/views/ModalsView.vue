@@ -4,7 +4,18 @@
 
         <button @click="showModal = !showModal">Toggle modal</button>
 
-        <Modal v-if="showModal"></Modal>
+        <Modal v-if="showModal">
+            <template #title>
+                My new title
+            </template>
+
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit, ratione consequatur porro veritatis
+                eligendi odio assumenda nemo iusto quam, ea possimus excepturi accusamus temporibus suscipit
+                impedit,
+                qui perferendis accusantium. Doloremque?</p>
+
+            <h1>Hello</h1>
+        </Modal>
 
     </div>
 </template>

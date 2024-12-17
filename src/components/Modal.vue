@@ -4,18 +4,24 @@
         -->
     <Teleport to="body">
         <div class="modal">
-            <h1>This is modal</h1>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit, ratione consequatur porro veritatis
-                eligendi odio assumenda nemo iusto quam, ea possimus excepturi accusamus temporibus suscipit
-                impedit,
-                qui perferendis accusantium. Doloremque?</p>
+            <h1>
+                <slot name="title" />
+            </h1>
 
-            <button @click="showModal = false">Hide Modal</button>
+            <slot />
+
+            <button>Hide Modal</button>
         </div>
     </Teleport>
 </template>
 
 <script setup>
+import { useSlots } from 'vue';
+
+const slots = useSlots();
+
+console.log(slots.title());
+
 
 </script>
 
