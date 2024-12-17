@@ -3,7 +3,7 @@
             dịch chuyển 1 div lên 1 div khác 
         -->
     <Teleport to="body">
-        <div class="modal">
+        <div class="modal" v-if="modelValue">
             <h1>
                 {{ title }}
             </h1>
@@ -27,6 +27,10 @@ const props = defineProps({
     title: {
         type: String,
         default: "No title huhu"
+    },
+    modelValue: {
+        type: Boolean,
+        default: false
     }
 })
 
@@ -37,10 +41,12 @@ const props = defineProps({
 
 /**  Emits */
 
-const emit = defineEmits(['hideModal'])
+const emit = defineEmits(['update:modelValue'])
 
 const handleButtonClick = () => {
-    emit('hideModal')
+    // emit('hideModal')
+
+    emit('update:modelValue', false)
 }
 
 </script>
