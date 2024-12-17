@@ -5,7 +5,7 @@
     <Teleport to="body">
         <div class="modal">
             <h1>
-                <slot name="title" />
+                {{ title }}
             </h1>
 
             <slot />
@@ -16,11 +16,23 @@
 </template>
 
 <script setup>
-import { useSlots } from 'vue';
+// import { useSlots } from 'vue';
 
-const slots = useSlots();
+// const slots = useSlots();
 
-console.log(slots.title());
+// console.log(slots.title());
+
+const props = defineProps({
+    title: {
+        type: String,
+        default: "No title huhu"
+    }
+})
+
+// const props = defineProps(['title'])
+
+
+console.log(props.title);
 
 
 </script>
