@@ -17,17 +17,19 @@
                 impedit,
                 qui perferendis accusantium. Doloremque?</p>
 
-            <h1>Hello</h1>
+            <h1>Hello: {{ userData.name }} @{{ userData.username }}</h1>
         </component>
 
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { inject, ref } from 'vue';
 import Modal from '@/components/Modal.vue';
 import ModalDark from '@/components/ModalDark.vue';
 
 const showDarkModals = ref(false)
 const showModal = ref(false)
+
+const userData = inject('userData');
 </script>
