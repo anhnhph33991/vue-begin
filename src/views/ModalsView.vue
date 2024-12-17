@@ -4,7 +4,7 @@
 
         <button @click="showModal = !showModal">Toggle modal</button>
 
-        <Modal v-if="showModal" title="My modal title (vie props)">
+        <Modal v-if="showModal" title="My modal title (vie props)" @hideModal="showModal = false">
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit, ratione consequatur porro veritatis
                 eligendi odio assumenda nemo iusto quam, ea possimus excepturi accusamus temporibus suscipit
                 impedit,
