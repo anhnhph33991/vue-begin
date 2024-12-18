@@ -15,10 +15,10 @@
     <div>
       <button
         class="counter-button"
-        @click="increaseCounter(1)"
-        :class="{ yellow: oddOrEvent === 'odd' }"
+        @click="counter.increment(1)"
+        :class="{ yellow: counter.oddOrEven === 'odd' }"
       >
-        {{ counter }}
+        {{ counter.count }}
       </button>
     </div>
   </div>
@@ -27,7 +27,13 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { vAutofocus } from "@/directives/vAutofocus";
-import { useCounter } from "@/use/useCounter";
+// import { useCounter } from "@/use/useCounter";
+
+// pinia
+import { useCounterStore } from "@/stores/counter";
+// pinia
+
+const counter = useCounterStore();
 
 const posts = ref([
   {
@@ -59,7 +65,7 @@ const posts = ref([
 const viewPost = "Post Detail";
 const viewPostRef = ref(null);
 
-const { counter, increaseCounter, oddOrEvent } = useCounter();
+// const { counter, increaseCounter, oddOrEvent } = useCounter();
 
 onMounted(() => {
   console.log(`The app title is ${viewPostRef.value.offsetWidth} px wide`);

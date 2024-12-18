@@ -30,17 +30,17 @@ const router = createRouter({
     {
       path: "/posts",
       name: "posts",
-      component: () => PostsView,
+      component: PostsView,
     },
     {
       path: "/postDetail/:id",
       name: "postDetail",
-      component: () => PostDetail,
+      component: PostDetail,
     },
     {
       path: "/modals",
       name: "modals",
-      component: () => ModalsView,
+      component: ModalsView,
     },
   ],
 });

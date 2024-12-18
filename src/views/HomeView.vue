@@ -1,16 +1,24 @@
 <template>
   <div class="home">
-    <h1 :style="{ color: 'red' }">{{ counterTitle }}</h1>
+    <h1 :style="{ color: 'red' }">{{ counter.title }}</h1>
 
-    <button @click="removeCounter" class="btn">-</button>
-    <span class="counter">{{ counter }}</span>
-    <button @click="increaseCounter(5)" class="btn">+</button>
+    <button class="btn" @click="counter.decrease(2)">--</button>
+    <button class="btn" @click="counter.decrease()">-</button>
+    <span class="counter">{{ counter.count }}</span>
+    <button class="btn" @click="counter.increment()">+</button>
+    <button class="btn" @click="counter.increment(2)">++</button>
 
-    <p>This counter is: {{ oddOrEvent }}</p>
+    <p>
+      This counter is:
+      <span
+        :style="{ color: counter.oddOrEven === 'even' ? 'green' : 'red' }"
+        >{{ counter.oddOrEven }}</span
+      >
+    </p>
 
     <div class="edit-counter">
       <span>Edit Counter:</span>
-      <input type="text" v-model="counterTitle" />
+      <input type="text" v-model="counter.count" />
     </div>
 
     <div v-if="flagCheck">
@@ -45,7 +53,7 @@
 </template>
 
 <script setup>
-import { useCounter } from "@/use/useCounter";
+// import { useCounter } from "@/use/useCounter";
 import {
   computed,
   nextTick,
@@ -62,16 +70,23 @@ import {
   watch,
 } from "vue";
 
-const flagCheck = ref(true);
+import { useCounterStore } from "@/stores/counter";
 
+const flagCheck = ref(true);
 const awesome = ref(true);
 
-const {
-  counter,
-  increaseCounter,
-  removeCounter,
-  oddOrEvent,
-  counterTitle } = useCounter()
+/** PINIA */
+
+const counter = useCounterStore();
+
+/** PINIA */
+
+// const {
+//   counter,
+//   increaseCounter,
+//   removeCounter,
+//   oddOrEvent,
+//   counterTitle } = useCounter()
 
 // lifecycle
 
